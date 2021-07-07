@@ -21,12 +21,14 @@ export default function makeCommentsDb({ makeDb }) {
     
     const query = publishedOnly ? { published: true } : {};
     const result$ = from(db.collection("comments").find(query))
+    //const values = result$.subscribe(val=>{
+      //console.log("Reactive result")
+      //console.log(val)})
+    
     const resultArray$ = result$.pipe(toArray())
     const toreturn = await lastValueFrom(resultArray$) 
     return toreturn
-    //const values = resultArray$.subscribe(val=>{
-      //console.log("Reactive result")
-      //console.log(val)})
+
   }
 
   /*async function findAll({ publishedOnly = false } = {}) {
